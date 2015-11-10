@@ -38,6 +38,13 @@ template '/etc/nginx/sites-available/default' do
 	mode '0644'
 end
 
+template '/etc/php5/fpm/pool.d/www.conf' do
+	source 'php-fpm.pool.erb'
+	owner 'root'
+	group 'root'
+	mode '0644'
+end
+
 service 'nginx' do
   action :restart
 end

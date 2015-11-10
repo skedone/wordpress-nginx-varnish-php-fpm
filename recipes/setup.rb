@@ -19,5 +19,6 @@ package "php5-fpm"
 package "php5-mysqlnd"
 package "php5-apcu"
 package "php5-curl"
+package "git"
 
 log "Successfully setup."

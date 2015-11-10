@@ -11,7 +11,7 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[wordpress_aws::setup]
+      # - recipe[wordpress_aws::setup]
       - recipe[wordpress_aws::configure]
       - recipe[wordpress_aws::deploy]
     attributes: { "domain" : "domain.com", "www_domain" : "www.domain.com" }
