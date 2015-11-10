@@ -1,14 +1,14 @@
 server {
     listen 81 default;
-    return 301 $scheme://<%= @node['www_domain'] %>$request_uri;
+    return 301 $scheme://<%= @node['wordpress_domain'] %>$request_uri;
 }
 
 server {
   listen 81;
-  server_name <%= @node['domain'] %>;
+  server_name <%= @node['wordpress_domain'] %>;
   include /var/www/nginx.conf;
 
-  root /var/www/<%= @node['domain'] %>/current;
+  root /var/www/<%= @node['wordpress_dir'] %>/current;
   index index.php;
 
   location / {
@@ -18,8 +18,9 @@ server {
   location ~ \.php$ {
     fastcgi_pass   127.0.0.1:9000;  # port where FastCGI processes were spawned
     fastcgi_index  index.php;
-    fastcgi_param  SCRIPT_FILENAME    /home/username/public_html/localhost/public/$fastcgi_script_name;  # same path as above
-    fastcgi_param PATH_INFO               $fastcgi_script_name;
-    include /etc/nginx/fastcgi_params;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
+    include fastcgi_params;
+    fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param  HTTPS off;
   }
 }

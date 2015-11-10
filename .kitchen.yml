@@ -14,4 +14,4 @@ suites:
       # - recipe[wordpress_aws::setup]
       - recipe[wordpress_aws::configure]
       - recipe[wordpress_aws::deploy]
-    attributes: { "domain" : "domain.com", "www_domain" : "www.domain.com" }
+    attributes: { "wordpress_dir" : "domain.com", "wordpress_domain" : "www.domain.com" }
