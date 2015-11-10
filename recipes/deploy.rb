@@ -2,7 +2,7 @@ deploy 'wordpress' do
   repo 'https://github.com/WordPress/WordPress.git'
   user 'root'
   group 'root'
-  deploy_to "/var/www/#{node['domain']}"
+  deploy_to "/var/www/#{node['wordpress_dir']}"
   symlink_before_migrate.clear
   create_dirs_before_symlink.clear
   purge_before_symlink.clear
