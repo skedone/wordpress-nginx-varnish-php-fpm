@@ -1,5 +1,5 @@
 deploy 'wordpress' do
-  repo 'https://github.com/WordPress/WordPress.git'
+  repo "#{node['wordpress_repository']}"
   user 'root'
   group 'root'
   deploy_to "/var/www/#{node['wordpress_dir']}"
