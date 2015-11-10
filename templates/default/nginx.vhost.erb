@@ -1,0 +1,25 @@
+server {
+    listen 81 default;
+    return 301 $scheme://<%= @node['www_domain'] %>$request_uri;
+}
+
+server {
+  listen 81;
+  server_name <%= @node['domain'] %>;
+  include /var/www/nginx.conf;
+
+  root /var/www/<%= @node['domain'] %>/current;
+  index index.php;
+
+  location / {
+          try_files $uri $uri/ /index.php?$args;
+  }
+
+  location ~ \.php$ {
+    fastcgi_pass   127.0.0.1:9000;  # port where FastCGI processes were spawned
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME    /home/username/public_html/localhost/public/$fastcgi_script_name;  # same path as above
+    fastcgi_param PATH_INFO               $fastcgi_script_name;
+    include /etc/nginx/fastcgi_params;
+  }
+}

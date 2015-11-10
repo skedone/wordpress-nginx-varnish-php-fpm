@@ -1,4 +1,7 @@
-name 				"wordpress_weschool"
-maintainer 			"Tech weschool"
-maintainer_email 	"tecnologia@oilproject.org"
-recipe 				"wordpress_weschool", "Install nginx, varnish, php-fpm and wordpress"
+name 				"wordpress_aws"
+maintainer 			"Wordpress on AWS with Autoscale"
+maintainer_email 	"edoardo.biraghi@gmail.com"
+recipe 				"wordpress_aws", "Install nginx, varnish, php-fpm and wordpress"
+license 			"MIT"
+
+supports 			"ubuntu", ">= 14.04"
