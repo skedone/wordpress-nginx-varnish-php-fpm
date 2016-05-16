@@ -202,7 +202,7 @@ sub vcl_backend_response {
 
         set beresp.ttl = 20m;
         set beresp.grace = 8h;
-        set beresp.http.cache-control = "max-age = 259200";
+        set beresp.http.Cache-Control = "max-age=86400, public";
 
         # Happens after we have read the response headers from the backend.
         # Here you clean the response headers, removing silly Set-Cookie headers
@@ -220,11 +220,7 @@ sub vcl_deliver {
 
         unset resp.http.Set-Cookie;
         unset resp.http.Age;
-
-        vcl_backend_response:
-
-        set beresp.http.Cache-Control = "max-age=86400, public";
-
+        
         set resp.http.Server = "mine";
         set resp.http.X-Powered-By = "electricity";
 
