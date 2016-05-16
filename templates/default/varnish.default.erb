@@ -200,7 +200,7 @@ sub vcl_recv {
 
 sub vcl_backend_response {
 
-        set beresp.ttl = 5m;
+        set beresp.ttl = 20m;
         set beresp.grace = 8h;
         set beresp.http.cache-control = "max-age = 259200";
 
@@ -217,6 +217,13 @@ sub vcl_deliver {
         # response to the client. You can do accounting or modifying the final object here.
 
         # main variable = resp.
+
+        unset resp.http.Set-Cookie;
+        unset resp.http.Age;
+
+        vcl_backend_response:
+
+        set beresp.http.Cache-Control = "max-age=86400, public";
 
         set resp.http.Server = "mine";
         set resp.http.X-Powered-By = "electricity";
