@@ -7,9 +7,16 @@ deploy 'wordpress' do
   create_dirs_before_symlink.clear
   purge_before_symlink.clear
   symlinks.clear
-  action :deploy
-end
+  restart_command do
 
-execute 'php-fpm restart' do 
-	command 'service php5-fpm restart'
+    execute 'php-fpm reload' do
+    	command 'service php5-fpm reload'
+    end
+
+    execute 'clean varnish cache' do
+        command 'varnishadm "ban req.http.host ~ #{node["wordpress_dir"]}"'
+    end
+
+  end
+  action :deploy
 end

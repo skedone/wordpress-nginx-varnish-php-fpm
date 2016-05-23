@@ -16,6 +16,7 @@ acl aclPurge {
     "127.0.0.1";
     "localhost";
 }
+
 acl aclBanned {
     # Private Networks 192.168.*.* [subnet mask /16 = netmask 255.255.0.0 = 16 meaningful bits left to right]
     "192.168.0.0"/16;
@@ -220,8 +221,8 @@ sub vcl_deliver {
 
     if (!(req.url ~ "wp-(login|admin)")) {
             unset resp.http.Set-Cookie;
+            unset resp.http.Age;
     }
-    unset resp.http.Age;
 
     set resp.http.Server = "mine";
     set resp.http.X-Powered-By = "electricity";
