@@ -14,6 +14,10 @@ execute 'php-fpm restart' do
     command 'service php5-fpm restart'
 end
 
+execute 'nginx restart' do
+    command 'service nginx restart'
+end
+
 execute 'clean varnish cache' do
     command 'varnishadm "ban req.http.host ~ #{node["wordpress_dir"]}"'
 end
