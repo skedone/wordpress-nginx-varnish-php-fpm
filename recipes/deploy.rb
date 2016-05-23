@@ -9,8 +9,8 @@ deploy 'wordpress' do
   symlinks.clear
   restart_command do
 
-    execute 'php-fpm reload' do
-    	command 'service php5-fpm reload'
+    execute 'php-fpm restart' do
+    	command 'service php5-fpm restart'
     end
 
     execute 'clean varnish cache' do
