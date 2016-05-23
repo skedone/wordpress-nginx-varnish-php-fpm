@@ -11,13 +11,13 @@ deploy 'wordpress' do
 end
 
 execute 'php-fpm restart' do
-    command 'service php5-fpm restart'
+	command 'service php5-fpm restart'
 end
 
-execute 'nginx restart' do
-    command 'service nginx restart'
+service 'nginx' do
+  action :restart
 end
 
-execute 'clean varnish cache' do
-    command 'varnishadm "ban req.http.host ~ #{node["wordpress_dir"]}"'
+service 'varnish' do
+  action :restart
 end
