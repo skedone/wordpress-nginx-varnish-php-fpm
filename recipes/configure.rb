@@ -45,16 +45,16 @@ template '/etc/php5/fpm/pool.d/www.conf' do
 	mode '0644'
 end
 
-execute 'php-fpm restart' do 
+execute 'php-fpm restart' do
 	command 'service php5-fpm restart'
 end
 
-service 'nginx' do
-  action :restart
-end
-
-service 'varnish' do
-  action :restart
-end
+# service 'nginx' do
+#   action :restart
+# end
+#
+# service 'varnish' do
+#   action :restart
+# end
 
 log "Successfully configure NGINX"
