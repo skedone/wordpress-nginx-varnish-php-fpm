@@ -49,12 +49,12 @@ execute 'php-fpm restart' do
 	command 'service php5-fpm restart'
 end
 
-# service 'nginx' do
-#   action :restart
-# end
-#
-# service 'varnish' do
-#   action :restart
-# end
+service 'nginx' do
+  action :restart
+end
+
+service 'varnish' do
+  action :restart
+end
 
 log "Successfully configure NGINX"
